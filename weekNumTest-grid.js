@@ -5,9 +5,9 @@ function getWeekNumber(d) {
     // Make Sunday day number 7, Monday is day 1, the start of the week
     d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
     // Get the first day of the current year
-    var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+    let yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
     // Calculate full weeks to nearest Thursday
-    var weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+    let weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
     // Return array of year and week number
     return [d.getUTCFullYear(), weekNo];
 }
@@ -42,7 +42,7 @@ tblRwQry[n].dataset.weeknum
 tblRwQry.forEach(myFunct);
 
 function myFunct(tr) {
-  var theWkNum = tr.getAttribute('data-weekNum');
+  let theWkNum = tr.getAttribute('data-weekNum');
 	// console.log(theWkNum);
 }
 
