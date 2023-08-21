@@ -1,15 +1,15 @@
 function getWeekNumber(d) {
-    // Copy the date so the original is not modified
-    d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-    // Set to nearest Thursday: current date + 4 - current day number
-    // Make Sunday day number 7, Monday is day 1, the start of the week
-    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
-    // Get the first day of the current year
-    let yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-    // Calculate full weeks to nearest Thursday
-    let weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
-    // Return array of year and week number
-    return [d.getUTCFullYear(), weekNo];
+  // Save the date to the variable d
+  d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  // Set to nearest Thursday: current date + 4 - current day number
+  // Make Sunday's day number 7
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay()||7));
+  // Get first day of year
+  let yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+  // Calculate full weeks to nearest Thursday
+  let weekNo = Math.ceil(( ( (d - yearStart) / 86400000) + 1)/7);
+  // Return array of year and week number
+  return [d.getUTCFullYear(), weekNo];
 }
 
 let result = getWeekNumber(new Date());
@@ -21,7 +21,7 @@ We can pull the indices of the array with the week at result[1] and year at resu
 There are only those two indices; 0 and 1
 The typeof(result[i]) is "number". 
 
-So I can set a  "data-weekNum" attribute in the HTML on each table row
+Set a  "data-weekNum" attribute in the HTML on each table row
 The attributted value will be a number that corresponds to the actual week number in the current year
 With  ==> result[1]  yeilding the current week number.
 
@@ -42,8 +42,8 @@ tblRwQry[n].dataset.weeknum
 tblRwQry.forEach(myFunct);
 
 function myFunct(tr) {
-  let theWkNum = tr.getAttribute('data-weekNum');
-	// console.log(theWkNum);
+let theWkNum = tr.getAttribute('data-weekNum');
+// console.log(theWkNum);
 }
 
 
@@ -66,21 +66,32 @@ let tblRwQry = document.querySelectorAll('.thisWeek');
 tblRwQry.forEach(myFunct);
 
 function myFunct(tr) {
-  	let theWkNum = tr.getAttribute('data-weekNum');
+  let theWkNum = tr.getAttribute('data-weekNum');
 }
 
 // Conditional to loop through each tblRwQry
 for(i = 0; i < tblRwQry.length; i++){
-	// Find the matching data-weekNum value
-	if (result[1] == tblRwQry[i].dataset.weeknum) {
-  // apply a different background colour to the found table row via a class addition 
-  tblRwQry[i].classList.add("wearehere");
-  // Log the found data-weekNum value to the console
-  console.log(tblRwQry[i].dataset.weeknum);
-	}
+// Find the matching data-weekNum value
+if (result[1] == tblRwQry[i].dataset.weeknum) {
+// apply a different background colour to the found table row via a class addition 
+tblRwQry[i].classList.add("wearehere");
+// Log the found data-weekNum value to the console
+console.log(tblRwQry[i].dataset.weeknum);
+}
 
 }
 
-// Scroll to focus on the wearehere class
+// Scroll to focus on the wearejhere class
 
 document.getElementsByClassName("thisWeek wearehere")[0].scrollIntoView();
+
+/*
+NOTE: to get a future week number I can use the function above: getWeekNumber() and pass the newDate() function to it as a parameter.
+
+For the new Date() function, add the parameters year, month, day
+Note that January is month number 00
+and Jan 1 2023 is a Sunday, but the weekday starts on a Monday, so to get the first week of January 2023, use this:
+
+getWeekNumber(new Date(2023, 00, 02));
+
+*/
