@@ -75,10 +75,7 @@ for(i = 0; i < tblRwQry.length; i++){
 if (result[1] == tblRwQry[i].dataset.weeknum) {
 // apply a different background colour to the found table row via a class addition 
 tblRwQry[i].classList.add("wearehere");
-// Log the found data-weekNum value to the console
-console.log(tblRwQry[i].dataset.weeknum);
-}
-
+  }
 }
 
 // Scroll to focus on the wearejhere class
@@ -93,5 +90,6 @@ Note that January is month number 00
 and Jan 1 2023 is a Sunday, but the weekday starts on a Monday, so to get the first week of January 2023, use this:
 
 getWeekNumber(new Date(2023, 00, 02));
-
 */
+
+console.log(`We are in week number ${result[1]} of the year ${result[0]}.`)
