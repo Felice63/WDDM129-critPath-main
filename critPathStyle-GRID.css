@@ -140,7 +140,7 @@ li {
 
 .sumtable {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 3fr 1fr;
     grid-template-rows: auto;
     border: 4px solid #ccc;
     margin: 20px auto; 
